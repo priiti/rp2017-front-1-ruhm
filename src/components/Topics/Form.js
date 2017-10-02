@@ -5,6 +5,8 @@ class Form extends React.Component {
   constructor (props) {
     super(props)
 
+    this.state = {}
+
     this.saveTopic = this.saveTopic.bind(this)
   }
 
@@ -18,18 +20,33 @@ class Form extends React.Component {
     })
       .then(results => {
         console.log(results)
+        const { topic } = results
+        const msg = 'Successfully saved topic ' + topic.name
+        this.setState({
+          msg,
+          error: false
+        })
       })
       .catch(error => {
         console.error(error)
+        this.setState({
+          msg: false,
+          error: error.data.errors[0].msg
+        })
       })
   }
 
   render () {
+    const { msg, error } = this.state
+    console.log('RENDER')
     return (
-      <form onSubmit={this.saveTopic}>
-        <input id='name' type='text' />
-        <input type='submit' value='save' />
-      </form>
+      <div>
+        <p>{ msg || error }</p>
+        <form onSubmit={this.saveTopic}>
+          <input id='name' type='text' />
+          <input type='submit' value='save' />
+        </form>
+      </div>
     )
   }
 }
