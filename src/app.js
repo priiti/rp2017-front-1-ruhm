@@ -11,7 +11,7 @@ render(
   <BrowserRouter history={browserHistory}>
     <div id='content-wrapper'>
       <Switch>
-        <Route exact path='/' restrict component={Home} />
+        <Route exact path='/' component={Home} />
         <Route component={NotFound} />
       </Switch>
     </div>
