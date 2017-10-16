@@ -24,6 +24,9 @@ class Form extends React.Component {
         this.setState({
           msg,
           error: false
+        }, () => {
+          // Kui setState on teostatud
+          this.props.getTopics()
         })
       })
       .catch(error => {

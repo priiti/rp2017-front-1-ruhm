@@ -3,11 +3,8 @@ import React from 'react'
 const List = (props) => {
   const { topics } = props
   const listItems = topics.map((t) => {
-    console.log(t)
     return (
-      <li key={t._id}>
-        {t.name}  
-      </li>
+      <li key={t._id}>{t.name}</li>
     )
   })
 
