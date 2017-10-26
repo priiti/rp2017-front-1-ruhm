@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import Api from '../../utils/Api'
 
 import List from './List'
-import Form from './Form'
+import TopicsForm from './TopicsForm'
+import CurriculumsForm from './CurriculumsForm'
 
 class Topics extends React.Component {
   constructor (props) {
@@ -15,16 +16,25 @@ class Topics extends React.Component {
   }
 
   componentDidMount () {
-    console.log('Load topics')
     this.getTopics()
-  }
+  } 
 
   getTopics () {
     Api('GET', '/topics', {})
     .then((results) => {
       const { topics } = results
-    
-      console.log(topics)
+
+      this.setState({ topics })
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+  }
+
+  getCurriculums () {
+    Api('GET', '/curriculums', {})
+    .then((results) => {
+      const { topics } = results
 
       this.setState({ topics })
     })
@@ -41,7 +51,13 @@ class Topics extends React.Component {
         <h1>Topics</h1>
         <Link to='/'>Home</Link>
         <br/>
-        <Form getTopics={ this.getTopics } />
+        <br/>
+        <TopicsForm getTopics={ this.getTopics } />
+        <br/>
+        <br/>
+        <CurriculumsForm />
+        <br/>
+        <br/>
         <List topics={ topics }/>
       </div>
     )

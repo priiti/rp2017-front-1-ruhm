@@ -1,7 +1,7 @@
 import React from 'react'
 import Api from '../../utils/Api'
 
-class Form extends React.Component {
+class TopicsForm extends React.Component {
   constructor (props) {
     super(props)
 
@@ -18,7 +18,7 @@ class Form extends React.Component {
     Api('POST', '/topics', {
       data: { name }
     })
-      .then(results => {
+      .then((results) => {
         const { topic } = results
         const msg = 'Successfully saved topic ' + topic.name
         this.setState({
@@ -29,7 +29,7 @@ class Form extends React.Component {
           this.props.getTopics()
         })
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
           msg: false,
           error: error.data.errors[0].msg
@@ -51,4 +51,4 @@ class Form extends React.Component {
   }
 }
 
-export default Form
+export default TopicsForm
