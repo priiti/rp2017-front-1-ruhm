@@ -1,0 +1,18 @@
+.content-wrapper {
+  background: #fff;
+  padding: 24;
+  min-height: 280;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+#main {
+  .ant-layout-content {
+    background-color: #fff;
+  }
+}
+
+.ant-form-item-label {
+  text-align: left;
+}

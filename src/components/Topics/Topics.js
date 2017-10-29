@@ -10,17 +10,18 @@ class Topics extends React.Component {
   componentDidMount () {
     this.props.getTopics()
   } 
-
+  
   render () {
     const { topics } = this.props
 
     return (
       <div id="topics">
         <h1>Topics</h1>
-        <Link to='/'><Button>Home</Button></Link>
         <br/>
         <br/>
         <TopicsForm {...this.props}/>
+        <br/>
+        <br/>
         <CurriculumsForm />
         <br/>
         <br/>
