@@ -31,18 +31,6 @@ class Topics extends React.Component {
     })
   }
 
-  getCurriculums () {
-    Api('GET', '/curriculums', {})
-    .then((results) => {
-      const { topics } = results
-
-      this.setState({ topics })
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-  }
-
   render () {
     console.log('Render topics')
     const { topics } = this.state
