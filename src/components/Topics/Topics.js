@@ -4,6 +4,8 @@ import List from './List'
 import TopicsForm from './TopicsForm'
 import CurriculumsForm from './CurriculumsForm'
 
+import { Button } from 'antd'
+
 class Topics extends React.Component {
   componentDidMount () {
     this.props.getTopics()
@@ -15,7 +17,7 @@ class Topics extends React.Component {
     return (
       <div id="topics">
         <h1>Topics</h1>
-        <Link to='/'>Home</Link>
+        <Link to='/'><Button>Home</Button></Link>
         <br/>
         <br/>
         <TopicsForm {...this.props}/>
