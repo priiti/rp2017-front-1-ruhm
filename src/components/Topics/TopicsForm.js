@@ -1,48 +1,27 @@
 import React from 'react'
-import Api from '../../utils/Api'
 
 class TopicsForm extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {}
-
-    this.saveTopic = this.saveTopic.bind(this)
+    this.formSubmit = this.formSubmit.bind(this)
   }
 
-  saveTopic (event) {
+  formSubmit (event) {
     event.preventDefault()
-
     const name = document.querySelector('input#name').value
-
-    Api('POST', '/topics', {
-      data: { name }
-    })
-      .then((results) => {
-        const { topic } = results
-        const msg = 'Successfully saved topic ' + topic.name
-        this.setState({
-          msg,
-          error: false
-        }, () => {
-          // Kui setState on teostatud
-          this.props.getTopics()
-        })
-      })
-      .catch((error) => {
-        this.setState({
-          msg: false,
-          error: error.data.errors[0].msg
-        })
-      })
+    this.props.saveTopic(name)
+    this.props.getTopics()
   }
 
   render () {
-    const { msg, error } = this.state
+    const { save } = this.props.topics
+    const { msg, error } = save
+    const errorMessage = error ? error.data.message || error.data.errors[0].msg : null
     return (
       <div>
-        <p>{ msg || error }</p>
-        <form onSubmit={this.saveTopic}>
+        <p>{ msg || errorMessage }</p>
+        <form onSubmit={this.formSubmit}>
           <input id='name' type='text' />
           <input type='submit' value='save' />
         </form>

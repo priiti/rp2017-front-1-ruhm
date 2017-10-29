@@ -1,7 +1,11 @@
 import * as types from '../../constants/ActionTypes'
 
 const INITIAL_STATE = {
-  data: []
+  data: [],
+  save: {
+    msg: null,
+    error: null
+  }
 }
 
 export default function (state = INITIAL_STATE, action) {
@@ -11,6 +15,16 @@ export default function (state = INITIAL_STATE, action) {
       return {
         ...state,
         data: topics
+      }
+    }
+    case types.TOPIC_SAVED: {
+      const { msg, error } = action
+      return {
+        ...state,
+        save: {
+          msg: msg || null,
+          error: error || null
+        }
       }
     }
     default:
