@@ -10,7 +10,6 @@ class Topics extends React.Component {
   } 
 
   render () {
-    console.log('Render topics')
     const { topics } = this.props
 
     return (

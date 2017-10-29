@@ -11,19 +11,17 @@ class TopicsForm extends React.Component {
     event.preventDefault()
     const name = document.querySelector('input#name').value
     this.props.saveTopic(name)
-    this.props.getTopics()
   }
 
   render () {
-    const { save } = this.props.topics
-    const { msg, error } = save
+    const { save: { msg, error, loading } } = this.props.topics
     const errorMessage = error ? error.data.message || error.data.errors[0].msg : null
     return (
       <div>
         <p>{ msg || errorMessage }</p>
-        <form onSubmit={this.formSubmit}>
+        <form onSubmit={ this.formSubmit }>
           <input id='name' type='text' />
-          <input type='submit' value='save' />
+          <input disabled={ loading } type='submit' value='save' />
         </form>
       </div>
     )
