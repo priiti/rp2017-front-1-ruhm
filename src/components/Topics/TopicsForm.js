@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Alert } from 'antd'
+import { Form, Icon, Input, Button, Alert} from 'antd'
 const FormItem = Form.Item
 
 class TopicsForm extends React.Component {
@@ -18,6 +18,14 @@ class TopicsForm extends React.Component {
   render () {
     const { save: { msg, error, loading } } = this.props.topics
     const errorMessage = error ? error.data.message || error.data.errors[0].msg : null
+    let alert = null;
+
+    if (msg) {
+      alert = <Alert banner={true} message={msg} type="success" />
+    }
+    if (errorMessage) {
+      alert = <Alert message={errorMessage} type="error" />
+    }
 
     const formItemLayout = {
       labelCol: {
@@ -37,6 +45,7 @@ class TopicsForm extends React.Component {
       //   </form>
       // </div>
       <div>
+        <p>{ alert ? alert : '' }</p>
         <Form onSubmit={ this.formSubmit }>
           <FormItem
             {...formItemLayout}
